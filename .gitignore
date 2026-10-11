@@ -1,0 +1,6 @@
+# Only release documentation and checksums belong in Git.
+*
+!/.gitignore
+!/README.md
+!/RELEASE_NOTES.md
+!/SHA256SUMS.txt
