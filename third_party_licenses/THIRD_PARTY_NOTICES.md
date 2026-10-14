@@ -42,7 +42,7 @@ Compatible replacement and reverse engineering for debugging changes to the LGPL
 
 Native and runtime notices additionally cover Python/CPython 3.12.14, PyInstaller 6.22.3 bootloader exception and Apache runtime modules, Tcl/Tk 8.6.12, OpenSSL 3.5.8 and libffi. The libffi library version was not independently established; its upstream permissive notice is included. The Shapely notices cover GEOS 3.14.1; NumPy covers OpenBLAS and the GCC runtime; lxml notices cover its statically linked native dependencies. The original Pillow and OpenCV notice files describe upstream wheel components; not every optional wheel component is included in this application build.
 
-The public package excludes MouseInfo, the FFmpeg video plugin, and private screenshot self-test data. These statements must be checked against the final public package inventory before publication.
+The public package excludes MouseInfo, the FFmpeg video plugin, private screenshot self-test data, and file copies of MSVC runtime DLLs, ucrtbase.dll, msvcrt.dll, api-ms-win-*, and ext-ms-win-*. Windows 10/11 supplies the system UCRT and API-set support; missing VC runtimes are installed from Microsoft. MIT-licensed Microsoft ONNX Runtime binaries remain included. File-copy filtering is separate from normalization of hash-suffixed MSVC import names. These statements must be checked against the final public package inventory before publication.
 
 The GPL texts carried by upstream package notices can describe build tools, GCC exceptions, or alternative license options; their presence alone does not license the entire application under GPL. This inventory is a technical attribution record, not a guarantee of legal noninfringement.
 

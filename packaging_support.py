@@ -24,12 +24,18 @@ def is_msvc_runtime(name: str) -> bool:
     return bool(_MSVC_NAME.fullmatch(Path(name).name))
 
 
+def is_windows_runtime_copy(name: str) -> bool:
+    filename = Path(name).name.lower()
+    return (is_msvc_runtime(filename) or filename in {"ucrtbase.dll", "msvcrt.dll"}
+            or filename.startswith(("api-ms-win-", "ext-ms-win-")))
+
+
 def public_binaries(entries, staging: Path):
     """Drop runtime copies and restore hashed MSVC imports to system DLL names."""
     result, modifications = [], []
     staging.mkdir(parents=True, exist_ok=True)
     for destination, source, kind in entries:
-        if is_msvc_runtime(destination) or is_msvc_runtime(source):
+        if is_windows_runtime_copy(destination) or is_windows_runtime_copy(source):
             continue
         path = Path(source)
         if path.suffix.lower() not in {".dll", ".pyd"}:

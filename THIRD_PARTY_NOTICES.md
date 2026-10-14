@@ -56,7 +56,7 @@ Clipper 6.4.2：Copyright Angus Johnson 2010–2017，Boost Software License 1.0
 GEOS、静态 libiconv/lxml、NumPy/OpenBLAS/GCC runtime 的相关源码和重建资料，以及 MPL 组件 certifi、tqdm 的源文件，作为独立附件提供：
 
 - [v1.2.2-beta.2 Release](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.2-beta.2)
-- [SoEasy_1.2.2-beta.2_ThirdPartySources.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/SoEasy_1.2.2-beta.2_ThirdPartySources.zip)
+- [04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip)
 
 源码包保留原版权、许可、构建项目及来源/哈希清单。`THIRD_PARTY_SOURCES.md` 说明获取、重建和替换兼容库的方法。该附件与程序包在同一 Release 提供，不要求使用者联系发布者才能取得源码，也不构成发布者代签的三年书面要约。
 
@@ -64,12 +64,16 @@ GEOS、静态 libiconv/lxml、NumPy/OpenBLAS/GCC runtime 的相关源码和重�
 
 允许使用者替换兼容的 LGPL 库，以及在调试对 LGPL 组件的修改所需范围内进行逆向工程。源码附件提供静态组合组件的完整源码和构建资料，以支持 LGPL-2.1 第 6(a) 条的重链接路径；本次审查没有重新编译所有上游库来证明逐字节重现，也没有把静态库重链接的实际成功作为已经完成的验证。
 
-## Microsoft Visual C++ 运行库
+## Windows 系统与 Microsoft Visual C++ 运行库
 
-Microsoft Visual C++ Runtime 属于 Microsoft 的专有组件，不能按本程序的 MIT 或第三方开源许可另行授权。**本公开包不包含 Microsoft Visual C++ runtime DLL 的副本**，包括来自 System32、CPython 目录或 Shapely wheel 的相关副本。缺少运行库时，请使用 Microsoft 官方页面或安装器，依据安装器显示的 Microsoft 条款安装：
+Windows 10/11 提供系统 UCRT、`msvcrt.dll` 及 API-set/extension-set 支持。**本公开包排除 Microsoft Visual C++ runtime、`ucrtbase.dll`、`msvcrt.dll`、`api-ms-win-*` 和 `ext-ms-win-*` DLL 的文件副本**，包括来自 System32、CPython、wheel 或其他构建依赖目录的副本；程序使用目标电脑的 Windows 系统组件。构建助手的 `is_windows_runtime_copy()` 负责排除文件复制，`is_msvc_runtime()` 单独负责识别需要归一化的 hash 后缀 MSVC 导入名，API-set 导入名不会被这样改写。
+
+Microsoft Visual C++ Runtime 属于 Microsoft 的专有组件，不能按本程序的 MIT 或第三方开源许可另行授权。缺少 VC 运行库时，请使用 Microsoft 官方页面或安装器，依据安装器显示的 Microsoft 条款安装：
 
 - [最新受支持的 Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist)
 - [Microsoft 官方 x64 安装器](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+
+ONNX Runtime 由 Microsoft 等上游作者开发并以 MIT 许可分发，相关二进制保留在包内。文件版本资源中的公司名或签名发布者只用于核对来源，不能单独据此认定许可为专有，也不会据此排除所有 Microsoft 二进制。
 
 ## 发布范围和审查限制
 

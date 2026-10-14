@@ -30,15 +30,17 @@ def source_hashes() -> dict[str, str]:
 def build() -> None:
     if os.name != "nt" or sys.maxsize <= 2**32:
         raise RuntimeError("请在 Windows 64 位 Python 中构建。")
-    root = SOURCE.parent / "soeasy_portable_build" / datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    root = SOURCE / ".work" / "build" / datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     root.mkdir(parents=True, exist_ok=False)
+    artifacts = SOURCE / ".work" / "artifacts"
+    artifacts.mkdir(parents=True, exist_ok=True)
     hashes = source_hashes()
     subprocess.run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--workpath", str(root / "work"),
                     "--distpath", str(root / "dist"), str(SOURCE / "SoEasy.spec")], cwd=SOURCE, check=True)
     folder = root / "dist" / "SoEasy题库采集器"
     executable = folder / "SoEasy题库采集器.exe"
-    from packaging_support import is_msvc_runtime
-    assert not [path for path in folder.rglob("*") if path.is_file() and is_msvc_runtime(path.name)]
+    from packaging_support import is_windows_runtime_copy
+    assert not [path for path in folder.rglob("*") if path.is_file() and is_windows_runtime_copy(path.name)]
     excluded_files = [path for path in folder.rglob("*") if path.is_file()
                       and (path.name.lower().startswith("opencv_videoio_ffmpeg")
                            or path.name.lower() == "onnxruntime.dll"
@@ -126,7 +128,7 @@ def build() -> None:
         json.dumps(package_files, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     files = sorted(path for path in folder.rglob("*") if path.is_file())
     # A beta must not replace the stable archive or its build metadata.
-    archive = SOURCE.parent / f"SoEasy_{RELEASE_VERSION}_Windows_x64.zip"
+    archive = artifacts / f"01-SoEasy-v{RELEASE_VERSION}-Windows-x64.zip"
     temporary_archive = root / archive.name
     with zipfile.ZipFile(temporary_archive, "w", compression=zipfile.ZIP_DEFLATED,
                          compresslevel=9) as packed:
@@ -146,7 +148,7 @@ def build() -> None:
               "version": RELEASE_VERSION, "prerelease": True,
               "source": str(SOURCE), "source_sha256": hashes,
               "no_user_config_or_output_in_package": True}
-    (SOURCE.parent / f"soeasy_portable_build_result_{RELEASE_VERSION}.json").write_text(
+    (artifacts / f"soeasy_portable_build_result_{RELEASE_VERSION}.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

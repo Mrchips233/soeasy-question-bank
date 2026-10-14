@@ -11,10 +11,23 @@
 [下载公开 Beta](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.2-beta.2)
 
 1. 从微软官方页面下载并安装 [Microsoft Visual C++ v14 x64 运行库](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist)。已经安装同等或更新版本时通常无需重复安装。微软安装器和许可由用户自行获取、确认；本下载包不再分发 Microsoft 运行库 DLL。
-2. 在 Releases 的 **Assets** 中下载 `SoEasy_1.2.2-beta.2_Windows_x64.zip`，**完整解压**到可写文件夹，双击 `SoEasy题库采集器.exe`。无需安装 Python 或 uv；OCR 模型已随包提供。
+2. 在 Releases 的 **Assets** 中下载 `01-SoEasy-v1.2.2-beta.2-Windows-x64.zip`，**完整解压**到可写文件夹，双击 `SoEasy题库采集器.exe`。无需安装 Python 或 uv；OCR 模型已随包提供。
 3. 保留 EXE 同目录下的 `_internal` 文件夹。不要只复制 EXE，也不要直接在压缩包里运行。
 
 建议 Beta 解压到独立文件夹，先试采集并检查输出。旧私人发行包保留为草稿，仅维护者可见，不再提供公开下载。
+
+Release 提供四个附件，第一次使用下载 **01 完整包**即可：
+
+| 附件 | 用途 |
+| --- | --- |
+| [01-SoEasy-v1.2.2-beta.2-Windows-x64.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/01-SoEasy-v1.2.2-beta.2-Windows-x64.zip) | 完整程序包，包含主程序、`_internal`、OCR 模型和说明文件。 |
+| [02-SoEasy-v1.2.2-beta.2-Windows-x64.exe](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/02-SoEasy-v1.2.2-beta.2-Windows-x64.exe) | 已完整解压本版本目录时，可单独取得主程序。它不能脱离配套的 `_internal` 和模型独立运行。 |
+| [03-SoEasy-v1.2.2-beta.2-SHA256SUMS.txt](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/03-SoEasy-v1.2.2-beta.2-SHA256SUMS.txt) | 合并列出完整 ZIP、单独 EXE 和第三方源码 ZIP 的 SHA-256，用于核验下载文件。 |
+| [04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip) | 第三方依赖的对应源码、许可和重建资料，供审阅或修改依赖；运行软件无需下载。 |
+
+单独 EXE 只适用于本版本完整目录：关闭程序后，将下载文件改名为 `SoEasy题库采集器.exe`，放到原主程序位置，保留配套文件夹。第一次使用或缺少 `_internal` 时请下载 01 完整包。
+
+需要核验时，在下载目录运行 `Get-FileHash -Algorithm SHA256 .\01-SoEasy-v1.2.2-beta.2-Windows-x64.zip`，将结果与 03 校验文件中对应文件名的值比较。其他两个文件也可用相同方法核验。
 
 ## 第一次采集
 
@@ -84,6 +97,8 @@ uv run --with PyInstaller==6.22.3 --with pefile==2024.8.26 python build_portable
 ```
 
 构建会运行原创样本的离线 OCR、GUI、三种题型和 Word/JSON 自检，生成版本化 ZIP；不要在源码目录中提交个人配置、题库、日志、旧真实测试素材或虚拟环境。构建环境应按项目锁文件安装；更换依赖版本需要重新核对许可、组件来源和第三方对应源码。
+
+构建缓存和自检结果写入项目内 `.work/build/<时间戳>/`，完整包写入 `.work/artifacts/01-SoEasy-v1.2.2-beta.2-Windows-x64.zip`，构建结果 JSON 也保存在 `.work/artifacts/`。这些临时文件不提交到 Git。
 
 公开版不包含 GPL MouseInfo 辅助工具、FFmpeg、第三方真题截图或字体文件。自检 PNG 和程序图标由项目的几何绘图代码生成，不使用其他应用的截图或标识。GEOS 的 DLL 导入名称调整记录随包提供，原库代码未重新编译；使用已安装的微软官方运行库。
 

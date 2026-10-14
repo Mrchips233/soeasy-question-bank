@@ -15,7 +15,7 @@ following locations, which have different purposes:
   modification JSON; this is not the general third-party license directory.
 
 The companion
-[SoEasy_1.2.2-beta.2_ThirdPartySources.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/SoEasy_1.2.2-beta.2_ThirdPartySources.zip)
+[04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip](https://github.com/Mrchips233/soeasy-question-bank/releases/download/v1.2.2-beta.2/04-SoEasy-v1.2.2-beta.2-ThirdPartySources.zip)
 is offered as an attachment alongside the executable ZIP in the
 [same GitHub Release](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.2-beta.2).
 
@@ -57,16 +57,22 @@ three-year written offer.
 
 ## GEOS binary import-name modification
 
-The public build does not distribute copies of Microsoft Visual C++ runtime
-DLLs. The original Windows Shapely wheel uses a hash-suffixed Microsoft runtime
-DLL name for dependency isolation. The application publisher modified affected
+The public build does not distribute copies of MSVC runtime DLLs,
+`ucrtbase.dll`, `msvcrt.dll`, `api-ms-win-*`, or `ext-ms-win-*` DLLs. Windows 10/11
+provides the system UCRT and API-set/extension-set support on the target computer.
+This excludes file copies collected from dependency folders as well as copies
+from Windows or Python directories. The original Windows Shapely wheel uses a
+hash-suffixed Microsoft runtime DLL name for dependency isolation. The application publisher modified affected
 GEOS PE import-name strings to request the normal system runtime filename
 (`msvcp140.dll`), then updated the PE checksum. GEOS algorithm code was not
 recompiled or changed.
 
 The MIT-licensed `build_materials/packaging_support.py` is an exact copy of the
-application's build helper. It implements these edits in `public_binaries` and
-returns a JSON-serializable record with the package-relative filename, original
+application's build helper. In `public_binaries`, `is_windows_runtime_copy()`
+excludes the listed runtime file copies. Separately, `is_msvc_runtime()` identifies
+hash-suffixed MSVC import names for normalization; API-set imports are not
+normalized by this rule. The helper returns a JSON-serializable record with the
+package-relative filename, original
 SHA-256, modified SHA-256, old/new import names, and a modification notice. It
 requires `pefile` (the reviewed build environment used 2024.8.26). Original wheel
 and Python installation files are not edited in place; changed copies are written
@@ -91,6 +97,9 @@ On a computer missing the runtime, install it from
 https://aka.ms/vs/17/release/vc_redist.x64.exe or Microsoft's documented download
 page. The installer and runtime license come from Microsoft; this source archive
 and the public application ZIP do not include copies of those runtime DLLs.
+Microsoft-authored ONNX Runtime binaries remain under their MIT license. Company
+version resources and Authenticode publisher identities are provenance evidence,
+not sufficient grounds for classifying every Microsoft binary as proprietary.
 
 ## Statically linked LGPL components
 
