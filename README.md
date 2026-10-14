@@ -6,18 +6,15 @@
 
 ## 下载和启动
 
-适用于 **Windows 10 / 11 64 位**。稳定版 **1.2.1** 保留，新精简包作为 **1.2.2-beta.1 预发布版**提供：
+适用于 **Windows 10 / 11 64 位**。当前公开版本是 **1.2.2-beta.2**。
 
-| 版本 | 下载 |
-| --- | --- |
-| 稳定版 1.2.1 | [下载稳定版](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.1) |
-| 精简 Beta 1.2.2-beta.1 | [下载预发布版](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.2-beta.1) |
+[下载公开 Beta](https://github.com/Mrchips233/soeasy-question-bank/releases/tag/v1.2.2-beta.2)
 
-1. 登录你的 GitHub 账号，打开上方对应版本的下载页面，在 **Assets** 中下载 Windows 压缩包。
-2. 将压缩包**完整解压**到桌面或其他可写文件夹，双击 `SoEasy题库采集器.exe`。无需安装 Python、uv，也无需另行下载 OCR 模型。
-3. 保留 EXE 同目录下的 `_internal` 文件夹。不能只复制 EXE，也不要直接在压缩包里运行。
+1. 从微软官方页面下载并安装 [Microsoft Visual C++ v14 x64 运行库](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist)。已经安装同等或更新版本时通常无需重复安装。微软安装器和许可由用户自行获取、确认；本下载包不再分发 Microsoft 运行库 DLL。
+2. 在 Releases 的 **Assets** 中下载 `SoEasy_1.2.2-beta.2_Windows_x64.zip`，**完整解压**到可写文件夹，双击 `SoEasy题库采集器.exe`。无需安装 Python 或 uv；OCR 模型已随包提供。
+3. 保留 EXE 同目录下的 `_internal` 文件夹。不要只复制 EXE，也不要直接在压缩包里运行。
 
-Beta 版可解压到独立文件夹试用，先试采集并检查输出结果。
+建议 Beta 解压到独立文件夹，先试采集并检查输出。旧私人发行包保留为草稿，仅维护者可见，不再提供公开下载。
 
 ## 第一次采集
 
@@ -63,3 +60,33 @@ Beta 版可解压到独立文件夹试用，先试采集并检查输出结果。
 程序会实际选择练习选项，可能影响小程序的答题记录。取得明确答案时按答案保存；如果连续两次点击“查看答案”都没有检测到错误，会按本次所选选项正确保存，建议结合保留的截图核对这种记录。
 
 遇到识别失败时，已完成题目仍会保存在 JSON 中。可点击 **打开调试日志** 查看本次记录，调整窗口或等待秒数后继续。Word 正在打开时，程序可能另存带时间戳的文件；需要更新原文件时，先关闭 Word，再重新导出。
+
+## 从源码运行
+
+项目自身的 Python 代码采用 [MIT](LICENSE) 许可。第三方依赖、OCR 模型和运行库保持各自许可证；MIT 不包含第三方题库内容的授权。
+
+安装 Windows 64 位 Python 3.12（包含 Tcl/Tk）和 uv，然后在仓库根目录执行：
+
+```powershell
+uv sync --locked
+uv run python fetch_models.py
+uv run python app.py
+```
+
+第一次获取模型需联网；`fetch_models.py` 依据 `models/manifest.json` 从官方模型发布地址下载并核对大小和 SHA-256。模型文件不放进 Git 仓库，发行 ZIP 已附带两个模型。也可运行 `install.cmd` 使用 Python/pip 安装和下载模型。
+
+## 构建公开版
+
+在 Windows x64、Python 3.12 环境完成上述模型准备后执行：
+
+```powershell
+uv run --with PyInstaller==6.22.3 --with pefile==2024.8.26 python build_portable.py
+```
+
+构建会运行原创样本的离线 OCR、GUI、三种题型和 Word/JSON 自检，生成版本化 ZIP；不要在源码目录中提交个人配置、题库、日志、旧真实测试素材或虚拟环境。构建环境应按项目锁文件安装；更换依赖版本需要重新核对许可、组件来源和第三方对应源码。
+
+公开版不包含 GPL MouseInfo 辅助工具、FFmpeg、第三方真题截图或字体文件。自检 PNG 和程序图标由项目的几何绘图代码生成，不使用其他应用的截图或标识。GEOS 的 DLL 导入名称调整记录随包提供，原库代码未重新编译；使用已安装的微软官方运行库。
+
+本项目是独立辅助工具，与练习小程序的运营方无关联，不表示获得其认可。请只整理自己有权访问和使用的练习材料；使用程序不会获得第三方题库、截图或商标的再分发权。
+
+第三方完整许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，对应源码和替换/重建说明见 [THIRD_PARTY_SOURCES.md](THIRD_PARTY_SOURCES.md)。依赖源码包在同一 Release 提供，不需要下载它来运行软件。

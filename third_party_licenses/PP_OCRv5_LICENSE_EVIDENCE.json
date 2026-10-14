@@ -1,0 +1,34 @@
+[
+  {
+    "model_card_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det/blob/0d63e78e2b680928f6b1747d76a08db6e645efb7/README.md",
+    "license": "apache-2.0",
+    "checked_date": "2026-10-14",
+    "api_source": "https://huggingface.co/api/models/PaddlePaddle/PP-OCRv5_mobile_det",
+    "repository": "PaddlePaddle/PP-OCRv5_mobile_det",
+    "revision": "0d63e78e2b680928f6b1747d76a08db6e645efb7"
+  },
+  {
+    "model_card_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec/blob/b26c3587fda8da3c8ec0ce357214b4d661ff1558/README.md",
+    "license": "apache-2.0",
+    "checked_date": "2026-10-14",
+    "api_source": "https://huggingface.co/api/models/PaddlePaddle/PP-OCRv5_server_rec",
+    "repository": "PaddlePaddle/PP-OCRv5_server_rec",
+    "revision": "b26c3587fda8da3c8ec0ce357214b4d661ff1558"
+  },
+  {
+    "model_card_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx/blob/e6f4fa85f00e168c862bc462aebca69eef9b3d3d/README.md",
+    "license": "apache-2.0",
+    "checked_date": "2026-10-14",
+    "api_source": "https://huggingface.co/api/models/PaddlePaddle/PP-OCRv5_mobile_det_onnx",
+    "repository": "PaddlePaddle/PP-OCRv5_mobile_det_onnx",
+    "revision": "e6f4fa85f00e168c862bc462aebca69eef9b3d3d"
+  },
+  {
+    "model_card_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_onnx/blob/b70df217f4fd99d14f970bad092cebe7d74cc4d1/README.md",
+    "license": "apache-2.0",
+    "checked_date": "2026-10-14",
+    "api_source": "https://huggingface.co/api/models/PaddlePaddle/PP-OCRv5_server_rec_onnx",
+    "repository": "PaddlePaddle/PP-OCRv5_server_rec_onnx",
+    "revision": "b70df217f4fd99d14f970bad092cebe7d74cc4d1"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "component": "PyGetWindow",
+    "file": "PyGetWindow-0.0.9-LICENSE.txt",
+    "git_blob_sha": "ccfe6209a3bcabbb78c873796448077a829c51bd",
+    "sha256": "f8c2193c7e92df1a8335548a69653fa56b0ea3536586d93932f8c79c206df9fd",
+    "url": "https://api.github.com/repos/asweigart/PyGetWindow/contents/LICENSE.txt?ref=master"
+  },
+  {
+    "component": "Tcl",
+    "file": "Tcl-8.6.12-license.terms",
+    "git_blob_sha": "d8049cd9e7ca055f7e584a76f88861a294b30c9c",
+    "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+    "url": "https://api.github.com/repos/tcltk/tcl/contents/license.terms?ref=core-8-6-12"
+  },
+  {
+    "component": "OpenSSL",
+    "file": "OpenSSL-3.5.8-LICENSE.txt",
+    "git_blob_sha": "49cc83d2ee29d13453188217f0e4edd70c7f842f",
+    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "url": "https://api.github.com/repos/openssl/openssl/contents/LICENSE.txt?ref=openssl-3.5.8"
+  },
+  {
+    "component": "libffi",
+    "file": "libffi-LICENSE.txt",
+    "git_blob_sha": "7282e798c20b91abedfabd749fbb653ef6cc4f4f",
+    "sha256": "67894089811f93fca47a76f85e017da6f8582d4ba0905963c6e0f1ad6df7a195",
+    "url": "https://api.github.com/repos/libffi/libffi/contents/LICENSE?ref=v3.4.8"
+  }
+]

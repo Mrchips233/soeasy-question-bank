@@ -1,0 +1,18 @@
+[project]
+name = "soeasy-question-bank"
+version = "0.1.0"
+description = "Windows 截图 OCR 练习题采集和 Word 题库导出"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "rapidocr==3.10.0",
+    "onnxruntime>=1.16,<2",
+    "opencv-python-headless>=4.8,<4.12",
+    "numpy>=1.24,<2",
+    "Pillow>=10,<13",
+    "PyAutoGUI==0.9.54",
+    "mss>=9,<11",
+    "python-docx>=1.1,<2",
+]
+
+[tool.uv]
+package = false

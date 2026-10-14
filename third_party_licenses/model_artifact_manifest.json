@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "backend": "rapidocr-onnxruntime-cpu",
+  "rapidocr_version": "3.10.0",
+  "created": "2026-10-11",
+  "config": {
+    "det_version": "PP-OCRv5",
+    "det_type": "mobile",
+    "rec_version": "PP-OCRv5",
+    "rec_type": "server",
+    "language": "ch",
+    "det_limit_type": "max",
+    "det_limit_side_len": 960,
+    "use_cls": false,
+    "intra_op_num_threads": 2,
+    "inter_op_num_threads": 2
+  },
+  "models": [
+    {
+      "task": "det",
+      "filename": "ch_PP-OCRv5_det_mobile.onnx",
+      "size_bytes": 4819576,
+      "sha256": "4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae",
+      "source_url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/det/ch_PP-OCRv5_det_mobile.onnx",
+      "upstream": "PaddlePaddle/PaddleOCR PP-OCRv5",
+      "conversion": "RapidAI/RapidOCR ONNX conversion",
+      "license": "Apache-2.0"
+    },
+    {
+      "task": "rec",
+      "filename": "ch_PP-OCRv5_rec_server.onnx",
+      "size_bytes": 84577022,
+      "sha256": "e09385400eaaaef34ceff54aeb7c4f0f1fe014c27fa8b9905d4709b65746562a",
+      "source_url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/rec/ch_PP-OCRv5_rec_server.onnx",
+      "upstream": "PaddlePaddle/PaddleOCR PP-OCRv5",
+      "conversion": "RapidAI/RapidOCR ONNX conversion",
+      "license": "Apache-2.0"
+    }
+  ],
+  "sources": {
+    "rapidocr": "https://github.com/RapidAI/RapidOCR",
+    "rapidocr_model_catalog": "https://github.com/RapidAI/RapidOCR/blob/v3.10.0/python/rapidocr/default_models.yaml",
+    "paddleocr": "https://www.paddleocr.ai/main/en/version3.x/module_usage/text_recognition.html",
+    "model_license": "https://github.com/RapidAI/RapidOCR/blob/main/python/MODEL_LICENSES.md"
+  },
+  "license": "Apache-2.0"
+}

@@ -1,6 +1,18 @@
-# Only release documentation and checksums belong in Git.
-*
-!/.gitignore
-!/README.md
-!/RELEASE_NOTES.md
-!/SHA256SUMS.txt
+/.venv/
+/**/__pycache__/
+*.py[cod]
+/.env
+/.env.*
+/config.json
+/output/
+/program_backups/
+/qa/
+/example/
+/portable_selftest.py
+/models/*.onnx
+/build/
+/dist/
+*.zip
+*.log
+*.jsonl
+/*selftest_result*/

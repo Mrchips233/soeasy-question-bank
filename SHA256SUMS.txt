@@ -1,2 +1,2 @@
-08a0d64b0a12ad656237aee011c17b8e6e5e23b1922fa1d09a3450722384bf0f  SoEasy_1.2.1_Windows_x64.zip
-526264ef22fa1a65325684d4bf35bf5860a6328bf009de1e5256f6152413d25a  SoEasy_1.2.2-beta.1_Windows_x64.zip
+2fd6af43a20bfcb1de02c52fec23f8ae35997b13bcdc27084e4f299daad933fc  SoEasy_1.2.2-beta.2_Windows_x64.zip
+82e462de6a5ac577fcde57817628c121e85c989deadac16f4467e1a7285f7edd  SoEasy_1.2.2-beta.2_ThirdPartySources.zip
